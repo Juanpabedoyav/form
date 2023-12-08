@@ -1,8 +1,8 @@
-import  Form  from '../components/Form'
+import FormMovies from "../components/Form"
 export default function FormScreen  () {
   return (
     <>
-        <Form  />
+        <FormMovies  />
     </>
   )
 }
