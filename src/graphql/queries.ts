@@ -1,5 +1,5 @@
 export const GET_FILMS = /* GraphQL */ `
-  query Query {
+  query {
     allFilms {
       films {
         title

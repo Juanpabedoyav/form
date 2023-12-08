@@ -1,18 +1,29 @@
-import { Formik } from "formik"
-import { FormData } from "../../interfaces/formData"
-import { FormEventHandler } from "react"
+// import { Formik } from "formik"
+// import { FormData } from "../../interfaces/formData"
+import { useEffect, useState } from "react"
+import {GET_FILMS} from "../../graphql/queries"
 
-
-const initialValues : FormData= {
-    firstName: '',
-    lastName: '',
-    favoriteMovie: ''
-}
+// const initialValues : FormData= {
+//     firstName: '',
+//     lastName: '',
+//     favoriteMovie: ''
+// }
 export default  function Form  () {
+const [favoriteMovies, setFavoriteMovies] = useState([])
+
+
+useEffect(() => {
+fetch('https://swapi-graphql.netlify.app/.netlify/functions/index',{
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({query: GET_FILMS})
+}).then(res => res.json()).then(res =>setFavoriteMovies(res.data.allFilms.films))
+}, [])
 
 
 
-const onSubmit = ()  => {
+const onSubmit = (e: React.FormEvent<HTMLFormElement>)  => {
+    e.preventDefault()
     console.log('submit')
 }
 
@@ -35,15 +46,11 @@ const onSubmit = ()  => {
         <div className="form-field">
             <label htmlFor="favorite">Favorite Star Wars movies</label>
             <select>
-                <option value="new-hope">A New Hope</option>
-                <option value="empire">The Empire Strikes Back</option>
-                <option value="return">Return of the Jedi</option>
-                <option value="phantom">The Phantom Menace</option>
-                <option value="attack">Attack of the Clones</option>
-                <option value="revenge">Revenge of the Sith</option>
-                <option value="force">The Force Awakens</option>
-                <option value="last">The Last Jedi</option>
-                <option value="rise">The Rise of Skywalker</option>
+                {
+                favoriteMovies.map((movie: { title: string }, i: number) => (
+                    <option key={i} value={movie.title}>{movie.title}</option>
+                ))
+            }
             </select>
         </div>
         <button>Submit</button>
