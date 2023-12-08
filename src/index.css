@@ -157,3 +157,12 @@ flex-direction: column;
 .error-message{
   color: red;
 }
+
+.isSubmitting{
+  color: #1E5167;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  height: 80%;
+}

@@ -41,16 +41,19 @@ export default function FormMovies() {
           return errors
         }}
       >
-        {({ values,  errors, handleBlur}) => (
+        {({ values,  errors, handleBlur, isSubmitting, }) => (
             <>
-            <section className="error-section" >
-                <ErrorMessage name="firstName" component="span" className="error-message"/>
-                <ErrorMessage name="lastName" component="span"  className="error-message"/>
-            </section>
-                  <Form >
+                    <section className="error-section" >
+                        <ErrorMessage name="firstName" component="span" className="error-message"/>
+                        <ErrorMessage name="lastName" component="span"  className="error-message"/>
+                    </section>
+                    {
+                    isSubmitting ? <div className="isSubmitting">Thanks for submitting the form.</div>
+                    :
+                    <Form >
                           <section className='form'>
-                              <div className='form-field--fullname'>
-                                  <div className='form-field'>
+                              <section className='form-field--fullname'>
+                                  <section className='form-field'>
                                       <label className="form-label" htmlFor='first-name'>First name</label>
                                       <Field
                                           name='firstName'
@@ -60,8 +63,8 @@ export default function FormMovies() {
                                           onBlur={handleBlur}
                                           value={values.firstName} 
                                           />
-                                  </div>
-                                  <div className='form-field'>
+                                  </section>
+                                  <section className='form-field'>
                                       <label className="form-label" htmlFor='last-name'>Last name</label>
                                       <Field
                                           name='lastName'
@@ -71,9 +74,9 @@ export default function FormMovies() {
                                           onBlur={handleBlur}
                                           value={values.lastName}
                                           />
-                                  </div>
-                              </div>
-                              <div className='form-field'>
+                                  </section>
+                              </section>
+                              <section className='form-field'>
                                   <label htmlFor='favorite'>Favorite Star Wars movies</label>
                                   <Field as ='select' 
                                   name='favoriteMovie' 
@@ -90,10 +93,14 @@ export default function FormMovies() {
                                           )
                                       )}
                                     </Field>
-                              </div>
+                              </section>
                               <button type='submit'>Submit</button>
                           </section>
-                      </Form></>
+                      
+                    </Form>
+}
+
+            </>
         )}
       </Formik>
     </section>
