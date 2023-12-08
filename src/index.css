@@ -166,8 +166,8 @@ flex-direction: column;
 
 @media (max-width: 900px) {
   .form-section{
-    height: 844px;
-    width: 390px;
+    max-height: 844px;
+    max-width: 390px;
   }
   .form-field--fullname{
     flex-direction: column  ;
