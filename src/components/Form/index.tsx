@@ -43,7 +43,7 @@ export default function FormMovies() {
       >
         {({ values,  errors, handleBlur}) => (
             <>
-            <section style={{display: "flex", flexDirection:"column"}}>
+            <section className="error-section" >
                 <ErrorMessage name="firstName" component="span" className="error-message"/>
                 <ErrorMessage name="lastName" component="span"  className="error-message"/>
             </section>
@@ -56,7 +56,7 @@ export default function FormMovies() {
                                           name='firstName'
                                           type='text'
                                           id='first-name'
-                                          className={errors.firstName ? "error" : ""}
+                                          className={errors.firstName ? "error-input" : ""}
                                           onBlur={handleBlur}
                                           value={values.firstName} 
                                           />
@@ -67,7 +67,7 @@ export default function FormMovies() {
                                           name='lastName'
                                           type='text'
                                           id='last-name'
-                                          className={errors.firstName ? "error" : ""}
+                                          className={errors.firstName ? "error-input" : ""}
                                           onBlur={handleBlur}
                                           value={values.lastName}
                                           />
